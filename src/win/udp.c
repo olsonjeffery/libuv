@@ -725,10 +725,12 @@ int uv_udp_open(uv_udp_t* handle, uv_os_sock_t sock) {
 #define VALIDATE_MULTICAST_TTL(value) ((value) >= -1 && (value) <= 255)
 #define VALIDATE_MULTICAST_LOOP(value) (1)
 
+#ifndef __MINGW32__
 SOCKOPT_SETTER(ttl,
                IP_TTL,
                IPV6_HOPLIMIT,
                VALIDATE_TTL)
+#endif
 SOCKOPT_SETTER(multicast_ttl,
                IP_MULTICAST_TTL,
                IPV6_MULTICAST_HOPS,
